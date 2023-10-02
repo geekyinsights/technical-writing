@@ -1,15 +1,15 @@
 ---
-title: Building a random Forest with scikit-learn and pandas
+title: Refactor your code
 ---
 # {% $markdoc.frontmatter.title %}
 
 ## Refactoring your code. 
 
 There are 'pythonic' ways of coding in the python language. There are also better ways to implement different types of code. This matters for two reasons: 
-- computation time required to run the code cause money
-- you are more likely to get hired if you code well. see point one. 
+- The computation time required to run the code costs money
+- You are more likely to get hired if you code well. See point one. 
 
-Create a new notebook. 
+**Create a new notebook.**
 
 We've added a few more methods to be imported
 
@@ -29,7 +29,8 @@ from sklearn.preprocessing import OrdinalEncoder
 from sklearn.impute import SimpleImputer
 ```
 
-Copy all of the folliw
+Copy all of the following cells from the previous tutorial into the new notebook. 
+
 ```py
 MODEL_DIR = '../models/'
 IMG_DIR = '../reports/figures/'
@@ -45,16 +46,14 @@ test = pd.read_csv("../data/raw/house_prices_test.csv")
 train.head()
 ```
 
-Insteead of finding out which columns are missing values or the columns types.
-
-Scikit-learn has a handy method called [make_column_selector](https://scikit-learn.org/stable/modules/generated/sklearn.compose.make_column_selector.html) which will choose columns of a specific type for you. 
+Instead of finding out which columns are missing values or the columns types, Scikit-learn has a handy method called [make_column_selector](https://scikit-learn.org/stable/modules/generated/sklearn.compose.make_column_selector.html) which will choose columns of a specific type for you. 
 
 ```py
 cat_selector = make_column_selector(dtype_include=object)
 num_selector = make_column_selector(dtype_include=np.number)
 ```
 
-Next instead of finding the missing values we can just fill it them using an [Ordinal Encoder](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OrdinalEncoder.html) for categorical values. We can also use a [Simple Imputer](https://scikit-learn.org/stable/modules/generated/sklearn.impute.SimpleImputer.html#sklearn.impute.SimpleImputer) to replace with the mean in our numerical columns. 
+Next, you can just fill it them using an [Ordinal Encoder](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OrdinalEncoder.html) for categorical values. You can also use a [Simple Imputer](https://scikit-learn.org/stable/modules/generated/sklearn.impute.SimpleImputer.html#sklearn.impute.SimpleImputer) to replace with the mean in the numerical columns. 
 
 ```py
 cat_processor = OrdinalEncoder(
@@ -65,9 +64,9 @@ cat_processor = OrdinalEncoder(
 num_processor = SimpleImputer(strategy="mean", add_indicator=True)
 ```
 
-After that we are going to use a [column transformer](https://scikit-learn.org/stable/modules/generated/sklearn.compose.make_column_transformer.html) to transform all of the values for use. 
-```py
+After that you are going to use a [column transformer](https://scikit-learn.org/stable/modules/generated/sklearn.compose.make_column_transformer.html) to transform all columns based on the above code. 
 
+```py
 
 preprocessor = make_column_transformer(
      (num_processor, num_selector),(cat_processor, cat_selector)
@@ -83,7 +82,8 @@ X_test = test
 
 ```
 
-We are going to get a bit fancy here. We're going to run the model with 4 different hyperparamters. 
+It is common to want to test out different hyperparameters. The code below will help you try the model with 4 different hyperparamters. 
+
 ```py
 param_1 = {'n_estimators': 200, 'max_depth':10, 'random_state':42}
 param_2 = {'n_estimators': 300, 'max_depth':10, 'random_state':42}
@@ -94,9 +94,9 @@ param_4 = {'n_estimators': 100, 'n_jobs':10, 'max_depth':10, 'random_state':42}
 params = [param_1, param_2, param_3, param_4]
 ```
 
-We creae a function to run the model , export the images, and save each model file. 
+You can now a function to run the model, export the images, and save each model file. 
 
-To do this we start with using [make_pipeline](https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.make_pipeline.html) This lets you run the preprocessing and the model together in one line of code. It will step through to process the data thenm it will run the model. 
+To do this you start with using [make_pipeline](https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.make_pipeline.html) This let's you run the preprocessing and the model together in one line of code. It will step through to process the data then it will run the model. 
 
 ```py
 # run regressor
@@ -123,8 +123,7 @@ def run_model(param, index):
 ```
 
 
-
-We then loop through the params list and run the function. We create an index variable to save the index number so that we can specific each in the model name. We add a +1 because python indexes start at 0. It would return 0, 1, 2, 3 instead of 1, 2, 3, 4. 
+You then loop through the params list and run the function. To make this possible, you will need to create an index variable to save the index number. This way you can specify each index in the model name. Notice that  a +1 is added. This is because python indexes start at 0. It would return 0, 1, 2, 3 instead of 1, 2, 3, 4. 
 
 ```py
 for param in params:
