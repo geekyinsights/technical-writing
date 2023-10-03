@@ -7,7 +7,7 @@ const items = [
     title: 'Get started',
     links: [{href: '/docs', children: 'What is a Random Forest?'}, 
     {href: '/build', children: 'How to build a Random Forest model'}, 
-    {href: '/refactor', children: 'How to code a Random Forest model more efficently'}
+    {href: '/refactor', children: 'Refactoring your code'}
   ],
   },
 ];

@@ -3,7 +3,6 @@ title: Refactor your code
 ---
 # {% $markdoc.frontmatter.title %}
 
-## Refactoring your code. 
 
 There are 'pythonic' ways of coding in the python language. There are also better ways to implement different types of code. This matters for two reasons: 
 - The computation time required to run the code costs money
