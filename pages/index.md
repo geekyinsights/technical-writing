@@ -12,7 +12,7 @@ This tutorial will break down the Random Forest regression model without jargon 
 We're going to cover: 
 - What is a Random Forest?
 - How to build a basic Random Forest Model.
-- •	How to use Random Forest with Scikit-learn and Pandas.
+- How to build Random Forest Models with Scikit-learn and Pandas.
 
 There will be references to research articles and books throughout this guide so that you can understand the math. 
 
