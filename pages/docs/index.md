@@ -1,5 +1,5 @@
 ---
-title: What is a Random Forest
+title: What is a Random Forest?
 ---
 
 # {% $markdoc.frontmatter.title %}
@@ -11,7 +11,7 @@ It’s a rather simple model to implement and it gets results.
 
 ## What is a Random Forest, anyway?  
 
-Random Forest is one of my favorite algorithms. You can pretty much drop anything into it and get a decent result. It’s like the Vitamix smoothie of my ML dreams. Random Forest models are a Blackbox model. That is  a technical term for, "we don’t know why it does what it does, but we sure do like the results."  
+Random Forest is one of my favorite algorithms. You can pretty much drop anything into it and get a decent result. Random Forest models are a Blackbox Model. A Blackbox Model is a technical term for, "we don’t know why it does what it does, but we sure do like the results."  
 
 It’s also a rather simple model to get started.  
 
@@ -30,14 +30,14 @@ Simpler still, when plotted on a histogram, the data doesn't look like the image
 ![image](https://www.freecodecamp.org/news/content/images/2020/08/normal_dist_68_rule.jpg )
 
 {% callout type="note" %}
-A Normal distribution is also called a bell curve. The shape comes from the assumption that 99.7% of the data is within one standard deviation from the mean. (More on that in a different post.) 
+A Normal distribution is also called a bell curve. The shape comes from the assumption that 99.7% of the data is within one standard deviation from the mean. 
 {% /callout %}
 
 ### 2. Random Forests are a type of Ensemble Model 
 
-Random Forests are  comprised of a collection of smaller models called decision trees. It combines weak tree models then averages the result to provide an answer. Each split creates a new tree which contains a random subset of features, or columns).
+As you may know, Ensemble Models are models that are comprised of smaller models. Random Forests follow this pattern are  comprised of a collection of smaller models called decision trees. Random Forests combine weak tree models then averages the result to provide an answer. Each split creates a new tree which contains a random subset of features or columns.
 
-There are 2 types of random forests: 
+There are two types of methods for Random Forests: 
 -Bagging
 -Boosting such as XGBOOST, CATBOOST, LIGHTGBM package implementations
 
@@ -60,15 +60,15 @@ How Random Forests handling missing values internally:
     - For continuous values, it takes the most frequent non-missing value in column weighted by proximity. 
 
 {% callout type="note" %}
-Regreession and Classification are two types of supervised learning techniques.More on that in a different post. 
+Regression and Classification are two types of supervised learning techniques.More on that in a different post. 
 {% /callout %}
 
 **Test Set:**
 
-- If a label, or column name, exists,  it fills the missing data with values derived from the training set.
-- If labels do not exist, then it replicates each case in the test set.  In each set of replicates, the one receiving the most votes determines the class of the original case. 
+- •	If a label, or column name exists it fills the missing data with values derived from the training set and uses it as the replacement value.
+-•	If labels do not exist, then it replicates each case in the test set *nclass* times. The first replica of a case is assumed to be *class 1* and the *class 1* the original case. 
 
- More detailed research into various methods of handing missing data in random forests. See more [here.](https://arxiv.org/pdf/1701.05305.pdf) 
+The 2nd replica is assumed to be class 2 and the class 2 fills that value. In each set of replicas, the one receiving the most votes will determine the class of the original case. More detailed research into various methods of handing missing data in Random Forests is availale in this paper. [this paper.](https://arxiv.org/pdf/1701.05305.pdf) 
 
  
 
@@ -80,17 +80,17 @@ One key feature of a Random Forest is Out of Bag Samples, or OOB. Your Random Fo
 That is why you don’t need to validate output of  Random Forest with cross validation. Cross Validation is another step in the machine learning process. Find out more here. 
 
 
-Extra information from Stat Quest with much better [visuals.]( https://youtu.be/J4Wdy0Wc_xQ) 
+Additional information along with visuals on Out of Bag Samples from Stat Quest. [Additional information along with visuals on Out of Bag Samples from Stat Quest.]( https://youtu.be/J4Wdy0Wc_xQ) 
 
 ### Why Use Random Forest 
 
-If you haven’t figured it out, this is my favorite model for getting ML projects of the ground. But why would you want to use it? 
+Random Forest models are great for getting Machine Learning projects off the ground. Now let's look at the bennefits of using it? 
 
 - It is a good for taking a first look at a model outcome. If you don't know anything about your data, but it is tabular. You can just run it through.
 
 - It has variance reduction for estimated prediction function which limits overfitting. It does this through bagging or bootstrap aggregation.  
 
-- You act as a Data Engineer/Data Scientist and you don’t want to do intensive data cleaning. Startups and smaller businesses often hire Data Scientist to work in dual roles. Even some larger ones, make it easier for you.  
+- You act as a Data Engineer/Data Scientist and you don’t want to do intensive data cleaning. Startups and smaller businesses often hire Data Scientist to work in dual roles. Even some larger companies make it easier for you.  
 
 - Train faster than neural networks. A let’s face it neural networks may be popular but sometimes they are over kill. Businesses want results more than they want you to have fun...sorry.  
 
@@ -101,23 +101,21 @@ If you haven’t figured it out, this is my favorite model for getting ML projec
 - A Random Forest model is considered Black box. But a proximity plot can be produced and it could be useful. It shows ‘which observations are effectively close together’.
 
 
-### Best data to use with examples 
+### When should you use with the Random Forest Model: 
 
-Data: Categorical(binning), Continuous, Boolean 
+Categorical(binning), Continuous, and Boolean data 
 
-A table with a large number of features i.e. large number of columns 
+    Ex. Data with a large number of features / columns
 
-###  When not to use it with examples 
+###  When you should not to use the Random Forest Model: 
 
-Don’t use it when you: 
+- when working with a linear model
 
-- Have  linear model 
+- when working with high cardinality with categorical variables 
 
-- Have a dataset with High cardinality categorical variables 
+- when working on time series forecasting 
 
-- Want to do Time series forecasting 
-
-- Have a Natural Language Processing (NLP) problem.
+- when working with Natural Language Processing (NLP ) problems
 
 
 **References**

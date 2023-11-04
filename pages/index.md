@@ -5,13 +5,20 @@ description: How to get started with Random Forest
 
 # Getting Started
 
-We're going to be breaking down a basic Random Forest model without the jargon so that you can get started building. 
+When completing data analysis, you will often have to work with non-linear data. However, using regressions can make the task simpler and best of all you won't have to crossover math. 
 
+This tutorial will break down the Random Forest regression model without jargon so that you can get started building a machine learning model.
+ 
 We're going to cover: 
 - What is a Random Forest?
 - How to build a basic Random Forest Model.
-- Refactoring your code.
-There will be references to research and books through out our guide if you want to see the math problems. 
+- •	How to use Random Forest with Scikit-learn and Pandas.
+
+There will be references to research articles and books throughout this guide so that you can understand the math. 
+
+Target audience: Intermediate Python users
+Time Requirement: 2 hours
+
 
 
 
