@@ -5,20 +5,20 @@ title: What is a Random Forest?
 # {% $markdoc.frontmatter.title %}
 
 
-Random Forest is one of my favorite algorithms because you can pretty much drop anything into it and get a good result. It’s like the Vitamix smoothie of my ML dreams. It’s considered a Blackbox model which is a technical term for, "we don’t know why it does what it does, but we sure do like the result."  
+Random Forest is a great algorithm because it allows you drop anything into it and it produces useful results. It’s considered a Blackbox model which is a technical term for, "we don’t know why it does what it does, but we sure do like the results."  
 
-It’s a rather simple model to implement and it gets results.  
+It’s a rather simple model to implement and the results can be .  
 
 ## What is a Random Forest, anyway?  
 
-Random Forest is one of my favorite algorithms. You can pretty much drop anything into it and get a decent result. Random Forest models are a Blackbox Model. A Blackbox Model is a technical term for, "we don’t know why it does what it does, but we sure do like the results."  
+Random Forest is a favorite algorithms for data scientists. You can pretty much drop anything into it and get a decent result. Random Forest models are a Blackbox Model. A Blackbox Model is a technical term for, "we don’t know why it does what it does, but we sure do like the results."  
 
-It’s also a rather simple model to get started.  
+It’s also a rather simple model for beginners.  
 
 
-### 1. Random Forests are a Non-Parametric Statistical model 
+### 1. Random Forests are Non-Parametric Statistical models 
 
-But what does that mean?  Well, this is the best definition that I’ve found so far:  
+What does that mean? A Random Forest Model according to ---- is best defined as:
 >"Nonparametric statistics is a method that makes statistical inferences without regard to any underlying distribution. The method fits a normal distribution under no assumptions."
 
 In more layman's terms: 
@@ -48,7 +48,7 @@ Research has shown that they usually stabilize at about 200 trees. Boosted trees
 Since it doesn’t care about the distribution, it performs well on: 
 Data imbalances and missing values. 
 
-How Random Forests handling missing values internally:
+How Random Forests handles missing values internally:
 
 **Training Set:** 
 - Regression: 
@@ -65,8 +65,8 @@ Regression and Classification are two types of supervised learning techniques.Mo
 
 **Test Set:**
 
-- •	If a label, or column name exists it fills the missing data with values derived from the training set and uses it as the replacement value.
--•	If labels do not exist, then it replicates each case in the test set *nclass* times. The first replica of a case is assumed to be *class 1* and the *class 1* the original case. 
+- If a label, or column name exists it fills the missing data with values derived from the training set and uses it as the replacement value.
+- If labels do not exist, then it replicates each case in the test set *nclass* times. The first replica of a case is assumed to be *class 1* and the *class 1* the original case. 
 
 The 2nd replica is assumed to be class 2 and the class 2 fills that value. In each set of replicas, the one receiving the most votes will determine the class of the original case. More detailed research into various methods of handing missing data in Random Forests is availale in this paper. [this paper.](https://arxiv.org/pdf/1701.05305.pdf) 
 
@@ -92,13 +92,13 @@ Random Forest models are great for getting Machine Learning projects off the gro
 
 - You act as a Data Engineer/Data Scientist and you don’t want to do intensive data cleaning. Startups and smaller businesses often hire Data Scientist to work in dual roles. Even some larger companies make it easier for you.  
 
-- Train faster than neural networks. A let’s face it neural networks may be popular but sometimes they are over kill. Businesses want results more than they want you to have fun...sorry.  
+- You can train faster than neural networks. Neural networks may be popular but sometimes they are not necessary. Businesses want results as quickly and inexpensively as possible.  
 
-- It’s simpler to deploy. Putting a model into production is costly. Most companies don’t have large R&D budgets; simple deployments can produce consistent results.  
+- It’s simple to deploy. Putting a model into production is costly. Most companies don’t have large R&D budgets; simple deployments can produce consistent results at lower costs.  
 
-- Can estimate feature importance. It can  demystify the black box model. 
+- It can estimate feature importance and demystify the Black Box Model. 
 
-- A Random Forest model is considered Black box. But a proximity plot can be produced and it could be useful. It shows ‘which observations are effectively close together’.
+- A Random Forest model is considered Black box. But it enables you to produce a proximity plot which can be useful. Proximity plots show ‘which observations are effectively close together’.
 
 
 ### When should you use with the Random Forest Model: 
