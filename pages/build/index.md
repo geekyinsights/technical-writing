@@ -5,21 +5,22 @@ title: How to build a Random Forest with Scikit-learn and Pandas
 
 **Create a notebook**
 
-- Right click the file name. 
-- Click New file.
-- Name it 'regressor.ipynb'. (ipynb is the Jupyter notebook file extension.)
+In your notebook folder, create a new file by:
+- Right clicking the file name 
+- Clicking New file
+- Giving the file a name -- 'regressor.ipynb' (.ipynb is the Jupyter notebook file extension)
 
 
-You are also using the Cookie Cutter Data science file structure. See article [here](https://drivendata.github.io/cookiecutter-data-science/#starting-a-new-project). 
+In order to streamline the creation of the file structure you will be using the Cookie Cutter Data Science.[Cookie Cutter Data Science](https://drivendata.github.io/cookiecutter-data-science/#starting-a-new-project). 
 
-**Import the packages**
-If you folloyoud our tutorial on setting up your dev environment, then all of these packages should already be installed in the default Anaconda distribution. 
+**Importing packages**
 
-Now that you have created your environment, you will need to import the following packages: 
+To run your code, you will need a dev environment with the following imported packages. 
+ 
 - Pandas: Used to format the data for the model
 - Matplotlib: Used to visualize the data
 - Joblib: Used to save the model
-- Scikit - learn  : Used to run the model
+- Scikit - learn: Used to run the model
 
 ```py
 import pandas as pd
@@ -30,11 +31,9 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import PredictionErrorDisplay
 ```
 
-**Save the output**
+**Saving the output**
 
-You need to create variables to store file locations. Doing it this way means you don't have to change the file location in multiple pieces of code when you make changes. 
-
-It is a good practice to create a place to store your visuals and a place to store your models. You can seperate these in to diffent file locations. One to start models and one to store visuals. 
+You need to create variables to be used for storing file locations. By using a variable, you won't need to change the file location in multiple sections of code when you make changes. It is a good practice to create a place to store your visuals and a place to store your models. You can seperate these in to diffent file locations. One to start models and one to store visuals. 
 
 ```py
 MODEL_DIR = '../models/'
