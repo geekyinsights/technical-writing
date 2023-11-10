@@ -17,35 +17,44 @@ In order to streamline the creation of the file structure you will be using the 
 
 To run your code, you will need a dev environment with the following imported packages. 
  
-- Pandas: Used to format the data for the model
-- Matplotlib: Used to visualize the data
-- Joblib: Used to save the model
-- Scikit - learn: Used to run the model
-
+- Pandas: To format the data for the model
 ```py
 import pandas as pd
+```
+- Matplotlib: To visualize the data
+```py
 import matplotlib.pyplot as plt
-from joblib import dump, load
+```
 
+- Joblib: To save the model
+```py
+from joblib import dump, load
+```
+- Scikit - learn: To run the model
+```py
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import PredictionErrorDisplay
 ```
 
 **Saving the output**
 
-You need to create variables to be used for storing file locations. By using a variable, you won't need to change the file location in multiple sections of code when you make changes. It is a good practice to create a place to store your visuals and a place to store your models. You can seperate these in to diffent file locations. One to start models and one to store visuals. 
+You need to create variables to be used for storing file locations. By using a variable, you won't need to change the file location in multiple sections of code when you make changes. It is a good practice to create a place to store your visuals and a place to store your models. You can seperate these into different file locations. One to store models and one to store visuals. This allows you to rerun tests or provide a visual when needed.
 
+Create the MODEL_DIR variable for your models.
 ```py
 MODEL_DIR = '../models/'
+```
+Create the IMG_DIR variable for your images.
+```py
 IMG_DIR = '../reports/figures/'
 ```
-
 **Import your data**
 
-Kaggle is a great place to get practice datasets. It is a competition youbsite that allows you to practice your skills on real-world data. 
-You will use the data from the [House Prices-Advanced Regression Techniques](https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques/overview) Project. 
+Kaggle is a great place to get practice datasets. It is a competition website that allows you to practice your skills on real-world data. In this guide you will be using the data from the [House Prices-Advanced Regression Techniques](https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques/overview) Project. 
 
-Download the *train.csv* file for this example. Upload that file to your data folder. 
+Once you are on the site you can locate the data set by clicking on the Data tab.Then scroll down the page to locate the download link for the train.csv file. 
+
+Once the download is complete upload that file to your data folder using the code below. 
 
 ```py
 #read dataset to variable
@@ -53,22 +62,21 @@ train = pd.read_csv("../data/raw/house_prices_train.csv")
 test = pd.read_csv("../data/raw/house_prices_test.csv"
 ```
 
-Check that the file was loaded. The .head() method will show the first 5 rows of the dataset. 
+Verify that the file has loaded correctly by using the .head() method which will show the first five rows of the dataset. 
 
 ```py
 train.head()
 ```
-
+Once the rows display, note te data features(column heading) to congirm that there are no problems.
 **Feature Engineering**
 
-It's important to know which columns have missing data. You may need to fill these.
+It's important to know which columns have missing data. These columns will need to be filled in. Use the following code. 
 
 ```py
 pd.set_option('display.max_rows', None)
 train.isnull().sum().sort_values(ascending = False)
 ```
-
-You need to fill in any column that has mising values. you add all of those column names to a list.
+Now use the train function to train your data by locating the null values then sorting them in descending order. You need to fill in any column that have missing values by placing those column names in a list. To do this you must use the following code.
 ```py
 columns = [ 'MSZoning', 'Street',
        'Alley', 'LotShape', 'LandContour', 'Utilities', 'LotConfig',
@@ -88,11 +96,9 @@ columns = [ 'MSZoning', 'Street',
        'SaleCondition', ]
 ```
 
-You will create can a function that will fill the missing data. you fill the data with -1. However, it could be better to fill data with mean, mode, mode, or other advanced techniques.
+You will create a function that will fill the missing data. you fill the data with -1. Depending on your goal, it could be better to fill in the missing data with the mean, mode, mode, or other advanced techniques. This function also changes categories into their numerical representation. Everything must be numerical because regression models cannot handle strings. Pandas will allow you to use the  pd.factorize() method to obtain a numeric representation of your array. The [pd.factorize()](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.factorize.html) method will handle this for you.
 
-The function you create will also change any columns that are filled with strings into a numbers. Regression models can not handle strings so everything must be numerical. The [pd.factorize()](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.factorize.html) method will hand this for us. It turns the strings into categories. Then those categories are turned into numbers. 
-
-For example, if a column has only the words 'cat' or 'dog'. It would be turned into 1 or 2. Check the documentation above for more information. 
+For example, if a column has only the words 'cat' or 'dog'. It would be turned into a 1 or a 2. Check the documentation above for more information. 
 
 ```py
 def fill_missing(filename): 
@@ -105,7 +111,7 @@ def fill_missing(filename):
 train = fill_missing(train)
 ```
 
-**extracting the target column from the data**
+**Extracting the target column from the data**
 
 You want to remove the column you want to predict, or target column, from the data set. It is customary to save this variable as y and the remaining data as X. 
 
