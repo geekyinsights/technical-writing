@@ -113,9 +113,7 @@ train = fill_missing(train)
 
 **Extracting the target column from the data**
 
-You want to remove the column you want to predict, or target column, from the data set. It is customary to save this variable as y and the remaining data as X. 
-
-The .drop() will remove the column ( axis=1) from the data. If axis=0 it will try to remove a row.
+Before going any further you must remove the column that you want to predict, otherwise known as the target column, from the data set. It is customary to save this variable as y and the remaining data as X.The .drop() function will remove the column ( axis=1) from the data. If axis=0 it will try to remove a row.
 ```py
 # save target column
 y = train['SalePrice'] 
@@ -123,32 +121,37 @@ y = train['SalePrice']
 X = train.drop('SalePrice', axis=1)
 X_test = test
 ```
-
+# save target column
+y = train['SalePrice'] 
+# remove target column from dataset
+X = train.drop('SalePrice', axis=1)
+X_test = test
+'''
 
 ** Training the model**
 
-Historical information is used to train the data so that it can predict potential future outcomes. Later, you will use he test use the test data to predict on the trained data. That outcome of the comparison between the two is the prediction. 
+Model training is used to train the data so that it can predict potential future outcomes. Later, you will use he test use the test data to predict on the trained data. That outcome of the comparison between the two is the prediction. 
 
-You will use scikit-learn's [Random Forest Regressor](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html) implementation. 
+You will use THE scikit-learn  [Random Forest Regressor](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html) implementation. 
 
-You can save the hyperparamters of the model to a dictionary. This allows you to easily make changes or run multiple experiments you change everything in one place.
+You will save the hyperparameters of the model to a dictionary so that if you make changes or run multiple experiments you can change everything in one place.There are 3 hyperparameters:
 
-There are 3 hyperparameters:
-- n_estimaters: number of trees will create in our forest
-- max_depth: how big should the tree grow. 
-- random_state: controls the randomness of the bootstropping sample
+- n_estimaters: Controls the number of trees that you will create in your forest
+- max_depth: Controls how big the tree should grow 
+- random_state: Controls the randomness of the bootstrapping sample
 
+Begin by setting your parameters using this code:
 ```py
 param = {'n_estimators': 200, 'max_depth':10, 'random_state':42}
 ```
 
-Run the model on the training data.
+Run the model on the training data using the following code:
 
 ```py
 regr = RandomForestRegressor().set_params(**param).fit(X, y)
 ```
 
-Predict the model on the test data. you can validate our results by uploading to Kaggle.
+Predict the model on the test data. You can validate your results by uploading to Kaggle.
 
 ```py
 y_pred = regr.predict(X_test)
