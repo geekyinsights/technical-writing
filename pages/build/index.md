@@ -96,7 +96,7 @@ columns = [ 'MSZoning', 'Street',
        'SaleCondition', ]
 ```
 
-You will create a function that will fill the missing data. you fill the data with -1. Depending on your goal, it could be better to fill in the missing data with the mean, mode, mode, or other advanced techniques. This function also changes categories into their numerical representation. Everything must be numerical because regression models cannot handle strings. Pandas will allow you to use the  pd.factorize() method to obtain a numeric representation of your array. The [pd.factorize()](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.factorize.html) method will handle this for you.
+You will create a function that will fill in the missing data. you fill the data with -1. Depending on your goal, it could be better to fill in the missing data with the mean, mode, mode, or other advanced techniques. This function also changes categories into their numerical representation. Everything must be numerical because regression models cannot handle strings. Pandas will allow you to use the  pd.factorize() method to obtain a numeric representation of your array. The [pd.factorize()](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.factorize.html) method will handle this for you.
 
 For example, if a column has only the words 'cat' or 'dog'. It would be turned into a 1 or a 2. Check the documentation above for more information. 
 
