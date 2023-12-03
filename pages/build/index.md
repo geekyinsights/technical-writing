@@ -96,7 +96,7 @@ columns = [ 'MSZoning', 'Street',
        'SaleCondition', ]
 ```
 
-You will create a function that will fill in the missing data. you fill the data with -1. Depending on your goal, it could be better to fill in the missing data with the mean, mode, mode, or other advanced techniques. This function also changes categories into their numerical representation. Everything must be numerical because regression models cannot handle strings. Pandas will allow you to use the  pd.factorize() method to obtain a numeric representation of your array. The [pd.factorize()](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.factorize.html) method will handle this for you.
+You will create a function that will fill in the missing data. you will fill in the data with -1. Depending on your goal, it could be better to fill in the missing data with the mean, mode, mode, or other advanced techniques. This function also changes categories into their numerical representation. Everything must be numerical because regression models cannot process strings. Pandas will allow you to use the  pd.factorize() method to obtain a numeric representation of your array. The [pd.factorize()](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.factorize.html) method performs the conversion efficiently.
 
 For example, if a column has only the words 'cat' or 'dog'. It would be turned into a 1 or a 2. Check the documentation above for more information. 
 
@@ -130,15 +130,15 @@ X_test = test
 
 ** Training the model**
 
-Model training is used to train the data so that it can predict potential future outcomes. Later, you will use he test use the test data to predict on the trained data. That outcome of the comparison between the two is the prediction. 
+Model training is done in order to train the data so that it is able to predict potential future outcomes. Later, you will use the test data to perform predictions on the trained data. The resulting outcome of the comparison between these two predictions will be use as the result of the training process otherwise known as the prediction. 
 
-You will use THE scikit-learn  [Random Forest Regressor](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html) implementation. 
+You will use Scikit-learn's  [Random Forest Regressor](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html) implementation. 
 
 You will save the hyperparameters of the model to a dictionary so that if you make changes or run multiple experiments you can change everything in one place.There are 3 hyperparameters:
 
-- n_estimaters: Controls the number of trees that you will create in your forest
-- max_depth: Controls how big the tree should grow 
-- random_state: Controls the randomness of the bootstrapping sample
+- n_estimaters - Controls the number of trees that you will create in your forest
+- max_depth    - Controls how big the tree should grow 
+- random_state - Controls the randomness of the bootstrapping sample
 
 Begin by setting your parameters using this code:
 ```py
@@ -158,16 +158,15 @@ y_pred = regr.predict(X_test)
 ```
 
 **Save your model**
-Running models repeatedly cost money. Instead, just save it, then load it when you need it. 
+Running models repeatedly cost money because you must pay for your time on the server. The alternative is to save the model then load it when you need it.
 
 ```py
-
 dump(regr, f'{MODEL_DIR}/rf_regressor.joblib') 
 ```
 
 **Feature importance**
 
-One method of checking your model is to look at the feature importances. Feature importances is a measure of how much each feature, or column contributed to the prediction. There's plenty of math behind this too. You can read more [here.](https://scikit-learn.org/stable/auto_examples/ensemble/plot_forest_importances.html)
+One method of checking your model is to look at the feature importances. Feature importances is a measure of how much each feature, or column contributed to the prediction. You can read more [here.](https://scikit-learn.org/stable/auto_examples/ensemble/plot_forest_importances.html) Use the code below to format the size of your graph and its background color.
 
 ```py
 #Format the graph size and background color
@@ -180,7 +179,7 @@ ax.set_title('What re the most important features in the regression decision?', 
 plt.savefig(f'{IMG_DIR}/feature_importance/feature_importance.png')
 ```
 
-You also want to check your Rrscore and the predictive interval thes values occur on. More on that later.
+YYou also need to check the Rrscore and the predictive interval on which these values occur using the code below.
 
 ```py
 disp = PredictionErrorDisplay.from_predictions(y_test, y_pred)
@@ -188,3 +187,4 @@ plt.savefig(f'{IMG_DIR}/prediction_error/prediction_error.png')
 print(f"R2score: \n",r2_score(y_test, y_pred))
 print(f"MAE: \n", mean_absolute_error(y_test, y_pred))
 ```
+You have created a Random Forest model. Great job! Be sure verify that everything is as you need it to be.
