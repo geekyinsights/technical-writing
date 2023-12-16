@@ -15,22 +15,22 @@ In order to streamline the creation of the file structure you will be using the 
 
 **Importing packages**
 
-To run your code, you will need a dev environment with the following imported packages. 
+To run your code, you will need a development environment with the following imported packages. 
  
-- Pandas: To format the data for the model
+- Pandas will be used to format the data for the model. Use the following code to import it.
 ```py
 import pandas as pd
 ```
-- Matplotlib: To visualize the data
+- Matplotlib will be used to visualize the data. Use the following code to import it.
 ```py
 import matplotlib.pyplot as plt
 ```
 
-- Joblib: To save the model
+- Joblib will be used to save the model. Use the following code to import it.
 ```py
 from joblib import dump, load
 ```
-- Scikit - learn: To run the model
+- Scikit - learn will be used to run the model. Use the following code to import them.
 ```py
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import PredictionErrorDisplay
@@ -38,13 +38,13 @@ from sklearn.metrics import PredictionErrorDisplay
 
 **Saving the output**
 
-You need to create variables to be used for storing file locations. By using a variable, you won't need to change the file location in multiple sections of code when you make changes. It is a good practice to create a place to store your visuals and a place to store your models. You can seperate these into different file locations. One to store models and one to store visuals. This allows you to rerun tests or provide a visual when needed.
+You need to create variables to be used for storing file locations. By using a variable, you won't need to change the file location in multiple sections of code as you update your code. It is a good practice to create a place to store your visuals and also to store your models. You can seperate these into different file locations -- one to store models and one to store visuals. This allows you to rerun tests or provide a visual when needed.
 
-Create the MODEL_DIR variable for your models.
+Create the MODEL_DIR variable for your models usig the code below.
 ```py
 MODEL_DIR = '../models/'
 ```
-Create the IMG_DIR variable for your images.
+Now usinf the code below create the IMG_DIR variable for your images.
 ```py
 IMG_DIR = '../reports/figures/'
 ```
@@ -52,7 +52,7 @@ IMG_DIR = '../reports/figures/'
 
 Kaggle is a great place to get practice datasets. It is a competition website that allows you to practice your skills on real-world data. In this guide you will be using the data from the [House Prices-Advanced Regression Techniques](https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques/overview) Project. 
 
-Once you are on the site you can locate the data set by clicking on the Data tab.Then scroll down the page to locate the download link for the train.csv file. 
+Once you are on the site you can locate the data set by clicking on the Data tab.Once on the Data tab scroll down the page to locate the download link for the train.csv file. 
 
 Once the download is complete upload that file to your data folder using the code below. 
 
@@ -62,7 +62,7 @@ train = pd.read_csv("../data/raw/house_prices_train.csv")
 test = pd.read_csv("../data/raw/house_prices_test.csv"
 ```
 
-Verify that the file has loaded correctly by using the .head() method which will show the first five rows of the dataset. 
+Verify that the file loaded correctly by using the .head() method which will show the first five rows of the dataset. 
 
 ```py
 train.head()
@@ -96,7 +96,7 @@ columns = [ 'MSZoning', 'Street',
        'SaleCondition', ]
 ```
 
-You will create a function that will fill in the missing data. you will fill in the data with -1. Depending on your goal, it could be better to fill in the missing data with the mean, mode, mode, or other advanced techniques. This function also changes categories into their numerical representation. Everything must be numerical because regression models cannot process strings. Pandas will allow you to use the  pd.factorize() method to obtain a numeric representation of your array. The [pd.factorize()](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.factorize.html) method performs the conversion efficiently.
+You will create a function that will fill in the missing data with -1. Depending on your goal, it could be better to fill in the missing data with the mean, mode, mode, or other advanced technique. This function also changes categories into their numerical representation. Everything must be numerical because regression models cannot process strings. Pandas will allow you to use the pd.factorize() method to obtain a numeric representation of your array. The [pd.factorize()](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.factorize.html) method performs the conversion efficiently.
 
 For example, if a column has only the words 'cat' or 'dog'. It would be turned into a 1 or a 2. Check the documentation above for more information. 
 
@@ -113,7 +113,7 @@ train = fill_missing(train)
 
 **Extracting the target column from the data**
 
-Before going any further you must remove the column that you want to predict, otherwise known as the target column, from the data set. It is customary to save this variable as y and the remaining data as X.The .drop() function will remove the column ( axis=1) from the data. If axis=0 it will try to remove a row.
+Before going any further you must remove the column that you want to predict, otherwise known as the target column, from the data set. It is customary to save this variable as y and the remaining data in the X variable. The .drop() function will remove the column (axis=1) from the data. If axis=0 it will try to remove a row.
 ```py
 # save target column
 y = train['SalePrice'] 
@@ -130,17 +130,17 @@ X_test = test
 
 ** Training the model**
 
-Model training is done in order to train the data so that it is able to predict potential future outcomes. Later, you will use the test data to perform predictions on the trained data. The resulting outcome of the comparison between these two predictions will be use as the result of the training process otherwise known as the prediction. 
+Model training is done in order to train the data so that it is able to predict potential future outcomes. Later, you will use the test data to perform predictions on the trained data. The resulting outcome of the comparison between these two predictions will be used as the result of the training process otherwise known as the prediction. 
 
-You will use Scikit-learn's  [Random Forest Regressor](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html) implementation. 
+You will now use Scikit-learn's  [Random Forest Regressor](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html) implementation. 
 
-You will save the hyperparameters of the model to a dictionary so that if you make changes or run multiple experiments you can change everything in one place.There are 3 hyperparameters:
+Save the hyperparameters of the model to a dictionary so that if you make changes or run multiple experiments you can change everything in one place. There are 3 hyperparameters:
 
 - n_estimaters - Controls the number of trees that you will create in your forest
 - max_depth    - Controls how big the tree should grow 
 - random_state - Controls the randomness of the bootstrapping sample
 
-Begin by setting your parameters using this code:
+Begin by setting your parameters using the following code:
 ```py
 param = {'n_estimators': 200, 'max_depth':10, 'random_state':42}
 ```
@@ -151,14 +151,14 @@ Run the model on the training data using the following code:
 regr = RandomForestRegressor().set_params(**param).fit(X, y)
 ```
 
-Predict the model on the test data. You can validate your results by uploading to Kaggle.
+Predict the model using the test data. You can validate your results by uploading it to Kaggle.
 
 ```py
 y_pred = regr.predict(X_test)
 ```
 
 **Save your model**
-Running models repeatedly cost money because you must pay for your time on the server. The alternative is to save the model then load it when you need it.
+Running models repeatedly costs money because you must pay for your time on the server. The alternative is to save the model then load it when you need it.
 
 ```py
 dump(regr, f'{MODEL_DIR}/rf_regressor.joblib') 
@@ -179,7 +179,7 @@ ax.set_title('What re the most important features in the regression decision?', 
 plt.savefig(f'{IMG_DIR}/feature_importance/feature_importance.png')
 ```
 
-YYou also need to check the Rrscore and the predictive interval on which these values occur using the code below.
+You also need to check the Rrscore and the predictive interval on which these values occur using the code below.
 
 ```py
 disp = PredictionErrorDisplay.from_predictions(y_test, y_pred)
@@ -187,4 +187,4 @@ plt.savefig(f'{IMG_DIR}/prediction_error/prediction_error.png')
 print(f"R2score: \n",r2_score(y_test, y_pred))
 print(f"MAE: \n", mean_absolute_error(y_test, y_pred))
 ```
-You have created a Random Forest model. Great job! Be sure verify that everything is as you need it to be.
+You have now created a Random Forest model. Great job! Be sure to verify that everything is as you need it to be.

@@ -4,13 +4,13 @@ title: Refactoring your code
 # {% $markdoc.frontmatter.title %}
 
 
-There are 'pythonic' ways of coding using the python language. There are also varying ways to implement different types of code. Some implementations are better than others. Coding pythonically is generally time efficient. Therefore, the computation time required will be less and thereby making the code more cost effective.   
+There are 'pythonic' ways of coding when using the python language. This Pythonic way references coding syntax that is the most effective use of the Python language. There are also varying ways to implement different types of code. Some implementations are better than others. Coding pythonically is generally time efficient. Therefore, the computation time required will be less and thereby making the code more cost effective.   
 
-Creating a Random Forest model using Scikit-learn and Pandas will put the principle of efficient pythonic coding into practice.
+Creating a Random Forest model using Scikit-learn and Pandas will put this principle of efficient pythonic coding into practice.
 
 **Create a new notebook.**
 
-To begin you will need to create a notebook and import three packages. Using a import module code below you will add numpy, pandas and matplotlib to your notebook.
+To begin you need to create a notebook and import three packages. Using the import module code below you will add numpy, pandas and matplotlib to your notebook.
 
 ```py
 #standard import packages
@@ -18,36 +18,36 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 ```
-Now you will import your data.
+Now the following code you will import your data.
 
 ```py
 from joblib import dump, load
 ```
-As you will be using the Random Forest Model the RandomForestRegressor from scikit-learn also needs to be imported.
+Since you will be using the Random Forest Model the RandomForestRegressor from scikit-learn also needs to be imported.
 
 ```py
 from sklearn.ensemble import RandomForestRegressor
 ```
-The purpose of a Random Forest Model is to predict the most likely value to place in missing data. Therefore, you need to import PredictionErrorDisplay and make_column_selector so that you can more precisely predict the values for the missing data.
+The purpose of a Random Forest Model is to predict the most likely value to put in the places where there is missing data. Therefore, usng the following code, you need to import PredictionErrorDisplay and make_column_selector so that you can more precisely predict the values for the missing data.
 
 ```py
 from sklearn.metrics import PredictionErrorDisplay
 from sklearn.compose import make_column_selector
 ```
-Next you will need to import the OrdinalEncoder and the SimpleImputer. 
+Next, you will need to import the OrdinalEncoder and the SimpleImputer using the following code. 
 
 ```py
 from sklearn.preprocessing import OrdinalEncoder
 from sklearn.impute import SimpleImputer
 ```
 
-Copy all of the following cells from the previous tutorial into the new notebook. 
+Using the following code copy all of the following cells from the previous tutorial into the new notebook. 
 
 ```py
 MODEL_DIR = '../models/'
 IMG_DIR = '../reports/figures/'
 ```
-Use the code below to read the dataset to the variable.
+Now read the dataset into the variable using the code below.
 
 ```py
 #read dataset to variable
@@ -66,7 +66,7 @@ cat_selector = make_column_selector(dtype_include=object)
 num_selector = make_column_selector(dtype_include=np.number)
 ```
 
-Next, you can just fill it them using an [Ordinal Encoder](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OrdinalEncoder.html) for categorical values. You can also use a [Simple Imputer](https://scikit-learn.org/stable/modules/generated/sklearn.impute.SimpleImputer.html#sklearn.impute.SimpleImputer) to replace with the mean in the numerical columns. 
+Next, you can just fill them in using an [Ordinal Encoder](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OrdinalEncoder.html) for categorical values. You can also use a [Simple Imputer](https://scikit-learn.org/stable/modules/generated/sklearn.impute.SimpleImputer.html#sklearn.impute.SimpleImputer) to replace a missing value with the mean in the numerical columns by using the following codng. 
 
 ```py
 cat_processor = OrdinalEncoder(
@@ -77,7 +77,7 @@ cat_processor = OrdinalEncoder(
 num_processor = SimpleImputer(strategy="mean", add_indicator=True)
 ```
 
-In order to be able to use the values they must be transformed into numerical values. You can use [column transformer](https://scikit-learn.org/stable/modules/generated/sklearn.compose.make_column_transformer.html) to transform all columns using the code below. 
+In order to be able to use the values the data must be transformed into numerical values. You can use [column transformer](https://scikit-learn.org/stable/modules/generated/sklearn.compose.make_column_transformer.html) to transform all columns data using the code below. 
 
 ```py
 
@@ -85,7 +85,7 @@ preprocessor = make_column_transformer(
      (num_processor, num_selector),(cat_processor, cat_selector)
 )
 ```
-Now you need to save your transformed data to a new column. To begin, you will need to set y as the variable for training your data.
+Now you need to save your transformed data to a new column. To begin, you will need to set y as the variable for training your data using the code below.
 
 ```py
 # save target column
@@ -135,7 +135,7 @@ def run_model(param, index):
 ```
 
 
-Lastly, you will then loop through the params list and run the function. To make this possible, you will need to create an index variable in which to save the index number so that you can specify each in the model’s name. To get the index to increment properly you need to take into account that in Python indexes begin with 0. This  will require you to begin by adding 1 to your counter. If you do not it would return 0, 1, 2, 3 instead of 1, 2, 3, 4. 
+Lastly, you will then loop through the params list and run the function. To make this possible, you will need to create an index variable in which to save the index number so that you can specify each in the model’s name. To get the index to increment properly you need to take into account that in Python indexes begin with 0. This  will require you to begin by adding 1 to your counter. If you do not it would return 0, 1, 2, 3 instead of 1, 2, 3, 4. See the coding below.
 
 ```py
 for param in params:
